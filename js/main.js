@@ -4,17 +4,14 @@ function init(){
 
 function preload(){
   game.load.image('background', 'images/background.png');
+   game.load.json('level:1', 'data/level01.json'); 
   //spawn platform sprites
     game.load.image('ground', 'images/ground.png');
     game.load.image('grass:8x1', 'images/grass_8x1.png');
     game.load.image('grass:6x1', 'images/grass_6x1.png');
-    // ? - load the image for grass:4x1
-    // ? - load the image for grass:2x1
-    // ? - load the image for grass:1x1
-    function preload() {
-    // ...
+    game.load.image('grass:4x1', 'images/grass_4x1.png');
+    game.load.image('grass:2x1', 'images/grass_2x1.png');
     game.load.image('grass:1x1', 'images/grass_1x1.png');
-
     // load the hero image
     game.load.image('hero', 'images/hero_stopped.png');
 };
@@ -56,7 +53,6 @@ function create(){
 
 function preload(){
 	// game.load.image('background', 'images/background.png');
-  game.load.json('level:1', 'data/level01.json'); 
   // ...
   //game.load.image('grass:1x1', 'images/grass_1x1.png');
 
@@ -155,10 +151,14 @@ function loadLevel(data) {
 function spawnCharacters(data){
     // ...
     data.spiders.forEach(function (spider){
+        spider.body.enable
+        spider.animations.play("die");
+        spider.animations.play ("die").oncomplete.addOnce(function (){
+
+        }
         var sprite = game.add.sprite(spider.x, spider.y, 'spider');
         spiders.add(sprite);
         sprite.anchor.set(0.5);
-        // animation
         sprite.animations.add('crawl', [0, 1, 2], 8, true);
         sprite.animations.add('die', [0, 4, 0, 4, 0, 4, 3, 3, 3, 3, 3, 3], 12);
         sprite.animations.play('crawl');
@@ -203,3 +203,10 @@ function handleCollisions() {
     // ? - Add collisions between spiders and enemyWalls
     // ...
 };
+function onHeroVsEnemy(enemy)
+
+function die(spider){
+    spider.body.enable = false;
+    spider.animations.play('die');
+    spider.animations.play 
+}
